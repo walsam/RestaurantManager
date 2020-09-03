@@ -27,7 +27,6 @@ class ManagerController extends ApiController
      */
     public function create(Request $request, ManagerRepository $managerRepository, EntityManagerInterface $em)
     {
-        $request = $this->transformJsonBody($request);
         if (! $request) {
             return $this->respondValidationError('Please provide a valid request!');
         }
@@ -39,8 +38,8 @@ class ManagerController extends ApiController
 
         // persist the new manager
         $manager = new Manager;
-        $manager->setFirstName($request->get('first_Name'));
-        $manager->setLastname($request->get('last_Name'));
+        $manager->setFirstName($request->get('first_name'));
+        $manager->setLastname($request->get('last_name'));
         $manager->setUsername($request->get('username'));
         $manager->setPassword($request->get('password'));
         $em->persist($manager);
